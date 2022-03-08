@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>EMPLOYEES PAGE</title>
+</head>
+<body>
+All Employees
+<a href="/saveEmployee"> Add</a>
+<table style="width: 40%">
+    <tr >
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Email</th>
+        <th>Phone number</th>
+        <th>Salary</th>
+        <th>Position</th>
+        <th>Company</th>
+        <th>Picture</th>
+        <th>Action</th>
+    </tr >
+    <tr th:each="employee:${employees}">
+        <td th:text="${employee.name}"></td>
+        <td th:text="${employee.surname}"></td>
+        <td th:text="${employee.email}"></td>
+        <td th:text="${employee.phoneNumber}"></td>
+        <td th:text="${employee.salary}"></td>
+        <td th:text="${employee.position}"></td>
+        <td th:text="${employee.company.name}"></td>
+        <td><img th:if="${employee.pictureUrl != null}" th:src="@{/getImage(picName=${employee.pictureUrl})}" width="50" height="50"/> <img th:if="${employee.pictureUrl == null}" src="/img.png" width="50" height="50"/></td>
+        <td><a th:href="@{'/deleteEmployee/' + ${employee.id}}">Delete</a></td>
+    </tr>
+</table>
+</body>
+</html>
