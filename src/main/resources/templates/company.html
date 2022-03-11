@@ -11,21 +11,21 @@
     <title>COMPANIES PAGE</title>
 </head>
 <body>
-All Companies:
-<a href="/saveCompany"> Add</a>
+<h3 th:text="#{company.all.companies}"></h3>
+<a href="/saveCompany" th:text="#{company.add.company}"></a>
 <table style="width: 30%">
     <tr >
-        <th>name</th>
-        <th>size</th>
-        <th>address</th>
-        <th>action</th>
+        <th th:text="#{company.company.name}"></th>
+        <th th:text="#{company.company.size}"></th>
+        <th th:text="#{company.company.address}"></th>
+        <th th:text="#{company.company.action}"></th>
     </tr >
     </tr >
     <tr th:each="company: ${companies}">
         <td th:text="${company.name}"></td>
         <td th:text="${company.size}"></td>
         <td th:text="${company.address}"></td>
-        <td><a th:href="@{'/deleteCompany/' + ${company.id}}">Delete </a></td>
+        <td><a th:href="@{'/deleteCompany/' + ${company.id}}" th:text="#{company.company.delete}"></a></td>
     </tr>
 </table>
 </body>

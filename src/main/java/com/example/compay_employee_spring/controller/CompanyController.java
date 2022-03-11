@@ -3,6 +3,9 @@ package com.example.compay_employee_spring.controller;
 import com.example.compay_employee_spring.entity.Company;
 import com.example.compay_employee_spring.repository.CompanyRepository;
 import com.example.compay_employee_spring.repository.EmployeeRepository;
+import com.example.compay_employee_spring.service.CompanyService;
+import com.example.compay_employee_spring.service.EmployeeService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,18 +19,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class CompanyController {
 
-    @Autowired
-    CompanyRepository companyRepository;
+    private final CompanyService companyService;
+    private final EmployeeService employeeService;
 
-    @Autowired
-    EmployeeRepository employeeRepository;
 
     @GetMapping("/company")
     public String companyPage(ModelMap map) {
-        List<Company> companies = companyRepository.findAll();
-        map.addAttribute("companies", companies);
+        map.addAttribute("companies", companyService.findAll());
         return "company";
     }
 
@@ -38,15 +39,15 @@ public class CompanyController {
 
     @PostMapping("/saveCompany")
     public String addCompany(@ModelAttribute Company company) {
-        companyRepository.save(company);
+        companyService.save(company);
         return "redirect:/company";
     }
 
     @GetMapping("/deleteCompany/{id}")
     @Transactional
     public String deleteCompany(@PathVariable("id") int id) {
-        employeeRepository.deleteAllByCompanyId(id);
-        companyRepository.deleteById(id);
+        employeeService.deleteAllByCompanyId(id);
+        companyService.deleteById(id);
         return "redirect:/company";
 
     }

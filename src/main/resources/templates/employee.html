@@ -11,19 +11,19 @@
     <title>EMPLOYEES PAGE</title>
 </head>
 <body>
-All Employees
-<a href="/saveEmployee"> Add</a>
+<h3 th:text="#{employee.all.employees}"></h3>
+<a href="/saveEmployee" th:text="#{employee.add.employee}"></a>
 <table style="width: 40%">
     <tr >
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Email</th>
-        <th>Phone number</th>
-        <th>Salary</th>
-        <th>Position</th>
-        <th>Company</th>
-        <th>Picture</th>
-        <th>Action</th>
+        <th th:text="#{employee.employee.name}"></th>
+        <th th:text="#{employee.employee.surname}"></th>
+        <th th:text="#{employee.employee.email}"></th>
+        <th th:text="#{employee.employee.phone.number}"></th>
+        <th th:text="#{employee.employee.salary}"></th>
+        <th th:text="#{employee.employee.position}"></th>
+        <th th:text="#{employee.employee.company}"></th>
+        <th th:text="#{employee.employee.picture}"></th>
+        <th th:text="#{employee.employee.action}"></th>
     </tr >
     <tr th:each="employee:${employees}">
         <td th:text="${employee.name}"></td>
@@ -34,7 +34,7 @@ All Employees
         <td th:text="${employee.position}"></td>
         <td th:text="${employee.company.name}"></td>
         <td><img th:if="${employee.pictureUrl != null}" th:src="@{/getImage(picName=${employee.pictureUrl})}" width="50" height="50"/> <img th:if="${employee.pictureUrl == null}" src="/img.png" width="50" height="50"/></td>
-        <td><a th:href="@{'/deleteEmployee/' + ${employee.id}}">Delete</a></td>
+        <td><a th:href="@{'/deleteEmployee/' + ${employee.id}}" th:text="#{employee.employee.delete}"></a></td>
     </tr>
 </table>
 </body>

@@ -5,14 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-Save Company:
+<h3 th:text="#{saveCompany.save.company}"></h3>
 <form action="/saveCompany" method="post">
 
     <input th:if="${company!=null}" type="hidden" th:value="${company.id}" name="id"/>
-    Name: <input type="text" name="name" th:value="${company==null}? '':${company.name}"/><br>
-    Size: <input type="number" name="size" th:value="${company==null}? '':${company.size}"/><br>
-    Address: <input type="text" name="address" th:value="${company==null}? '':${company.address}"/><br>
-    <input type="submit" value="save">
+   <h5 th:text="#{company.company.name}"></h5>  <input type="text" name="name" th:value="${company==null}? '':${company.name}"/><br>
+    <h5 th:text="#{company.company.size}"></h5>  <input type="number" name="size" th:value="${company==null}? '':${company.size}"/><br>
+    <h5 th:text="#{company.company.address}"></h5>  <input type="text" name="address" th:value="${company==null}? '':${company.address}"/><br>
+    <input  type="submit" th:text="#{company.company.save}" value="">
 </form>
 </body>
 </html>

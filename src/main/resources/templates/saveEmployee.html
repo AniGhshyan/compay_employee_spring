@@ -5,22 +5,22 @@
     <title>Title</title>
 </head>
 <body>
-Save Employee:
+<h3 th:text="#{saveEmployee.save.employee}"></h3>
 <form action="/saveEmployee" method="post" enctype="multipart/form-data">
 
     <input th:if="${employee!=null}" type="hidden" th:value="${employee.id}" name="id"/>
-    Name: <input type="text" name="name" th:value="${employee==null}? '':${employee.name}"/><br>
-    Surname: <input type="text" name="surname" th:value="${employee==null}? '':${employee.surname}"/><br>
-    email: <input type="text" name="email" th:value="${employee==null}? '':${employee.email}"/><br>
-    phoneNumber: <input type="text" name="phoneNumber" th:value="${employee==null}? '':${employee.phoneNumber}"/><br>
-    salary: <input type="number" name="salary" th:value="${employee==null}? '':${employee.salary}"/><br>
-    position: <input type="text" name="position" th:value="${employee==null}? '':${employee.position}"/><br>
-    picture:<input type="file" name="picture" /><br>
-    Company:
+    <h5 th:text="#{employee.employee.name}"></h5><input type="text" name="name" th:value="${employee==null}? '':${employee.name}"/><br>
+    <h5 th:text="#{employee.employee.surname}"></h5> <input type="text" name="surname" th:value="${employee==null}? '':${employee.surname}"/><br>
+    <h5 th:text="#{employee.employee.email}"></h5> <input type="text" name="email" th:value="${employee==null}? '':${employee.email}"/><br>
+    <h5 th:text="#{employee.employee.phone.number}"></h5> <input type="text" name="phoneNumber" th:value="${employee==null}? '':${employee.phoneNumber}"/><br>
+    <h5 th:text="#{employee.employee.salary}"></h5> <input type="number" name="salary" th:value="${employee==null}? '':${employee.salary}"/><br>
+    <h5 th:text="#{employee.employee.position}"></h5> <input type="text" name="position" th:value="${employee==null}? '':${employee.position}"/><br>
+    <h5 th:text="#{employee.employee.picture}"></h5><input type="file" name="picture" /><br>
+    <h5 th:text="#{employee.employee.company}"></h5>
     <select name="company.id">
         <option th:each="company:${companies}" th:text="${company.name }" th:value="${company.id}"></option>
     </select><br>
-    <input type="submit" value="save">
+    <input type="submit" th:text="#{company.company.save}" value="">
 </form>
 </body>
 </html>
